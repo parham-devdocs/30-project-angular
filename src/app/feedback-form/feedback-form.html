@@ -1,0 +1,46 @@
+<div class=" w-full h-full flex justify-center items-center">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class=" flex  flex-col items-center gap-5 shadow-2xl px-5 py-5 rounded-lg">
+    <h1 class=" text-2xl text-green-700 underline underline-offset-8">Profile</h1>
+    <div class=" flex flex-col">
+ <p> Name :  {{name}}</p>  
+  <p> Email  :   {{email}}</p> 
+   <p>Description :  {{description}}</p> 
+    </div>
+    <div class=" px-2 py-2 border-2 border-green-600 rounded-lg w-[400px]">
+      <label>
+        Name
+        <input formControlName="name" placeholder="Your name" class=" outline-0">
+      </label>
+      <div *ngIf="form.controls.name.invalid && (form.controls.name.dirty || form.controls.name.touched || submitted)" style="color:crimson">
+        <small *ngIf="form.controls.name.errors && form.controls.name.errors['required']">Name is required.</small>
+        <small *ngIf="form.controls.name.errors && form.controls.name.errors['minlength']">Min 3 characters.</small>
+      </div>
+    </div>
+   
+  <div class=" px-2 py-2 border-2 border-green-600 rounded-lg w-[400px]">
+    <label>
+      Email
+      <input formControlName="email" placeholder="you@example.com" class=" outline-0">
+    </label>
+    <div *ngIf="form.controls.email.invalid && (form.controls.email.dirty || form.controls.email.touched || submitted)" style="color:crimson">
+      <small *ngIf="form.controls.email.errors && form.controls.email.errors['required']">Email is required.</small>
+      <small *ngIf="form.controls.email.errors && form.controls.email.errors['email']">Email must be valid.</small>
+    </div>
+  </div>
+  
+  
+    <div class=" px-2 py-2 border-2 border-green-600 rounded-lg w-[400px]">
+     
+        <textarea rows="3" formControlName="description" placeholder="description" class="outline-0 "></textarea>
+      <div *ngIf="form.controls.description.invalid && (form.controls.description.dirty || form.controls.description.touched || submitted)" style="color:crimson">
+        <small *ngIf="form.controls.description.errors && form.controls.description.errors['required']">Email is required.</small>
+        <small *ngIf="form.controls.description.errors && form.controls.description.errors['email']">Email must be valid.</small>
+      </div>
+    </div>
+   
+  
+    <button type="submit" [disabled]="form.invalid" class=" px-5 py-2 bg-green-600 rounded-lg disabled:bg-green-950 text-white disabled:cursor-alias cursor-pointer">Apply Changes</button>
+  </form>
+
+</div>
+
